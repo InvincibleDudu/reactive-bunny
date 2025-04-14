@@ -1,5 +1,4 @@
 # Todo
-- blackscreen
+- blackscreen / bloom
 - avatar
-- bloom
 - calc(ttk, ppi)
