@@ -11,7 +11,9 @@ function MyMenu() {
    return (
       <div>
          <ul className={s.menu}>
-            { items.map(item => <li><NavLink to={item.key}>{item.label}</NavLink></li>) }
+            { items.map(item =>
+               <li><NavLink to={item.key}>{item.label}</NavLink></li>)
+            }
          </ul>
       </div>
    )

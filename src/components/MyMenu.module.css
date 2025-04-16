@@ -3,3 +3,12 @@
     justify-content: center;
     list-style: none;
 }
+
+.menu li:hover {
+    opacity: 0.5;
+}
+
+.menu li {
+    margin: 0 10px;
+    transition: 0.2s all;
+}

@@ -12,3 +12,18 @@ main {
     background: #000;
     padding: 0;
 }
+
+.black-screen svg:hover {
+    opacity: 1;
+}
+.black-screen svg {
+    opacity: .8;
+    color: green;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    transition: .2s all;
+    right: 12px;
+    bottom: 12px;
+}
