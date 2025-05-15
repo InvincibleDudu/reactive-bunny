@@ -22,6 +22,7 @@ export default function BlackScreen() {
    useEffect(() => {
       // Add the mousemove event listener when the component mounts
       window.addEventListener('mousemove', handleMouseMove)
+      window.addEventListener('dblclick', toggleFullscreen)
 
       // Clean up the event listener when the component unmounts
       return () => {
