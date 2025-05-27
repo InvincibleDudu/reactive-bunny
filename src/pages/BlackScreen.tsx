@@ -11,6 +11,7 @@ export default function BlackScreen() {
       clock: false,
       showSeconds: false,
    })
+   const backgroundRef = useRef<HTMLDivElement>(null)
    const [secondsChecked, setSecondsChecked] = useState(false)
    const [clockTime, setClockTime] = useState(getReadableTime())
    const [api, contextHolder] = notification.useNotification()
@@ -67,7 +68,7 @@ export default function BlackScreen() {
    useEffect(() => {
       // Add the mousemove event listener when the component mounts
       window.addEventListener('mousemove', handleMouseMove)
-      window.addEventListener('dblclick', toggleFullscreen)
+      backgroundRef.current?.addEventListener('dblclick', toggleFullscreen)
       setInterval(() => {
          setClockTime(getReadableTime())
       }, 1000)
@@ -84,7 +85,7 @@ export default function BlackScreen() {
    return (
       <>
          {contextHolder}
-         <div className={'black-screen ' + (isVisible ? '' : 'cursor-none')}>
+         <div className={'black-screen ' + (isVisible ? '' : 'cursor-none')} ref={backgroundRef}>
             {clockChecked && <div className="clock">{secondsChecked ? clockTime : clockTime.substring(0, clockTime.length - 3)}</div>}
             {isVisible &&
                 <svg onClick={toggleFullscreen} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
