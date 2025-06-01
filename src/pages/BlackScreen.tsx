@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Checkbox, CheckboxChangeEvent, ConfigProvider, notification, theme } from 'antd'
 import { getReadableTime, toggleFullscreen } from '../util.ts'
+import MyMenu from '../components/MyMenu.tsx'
 
 export default function BlackScreen() {
    // State to manage the visibility of the element
@@ -34,6 +35,7 @@ export default function BlackScreen() {
          key: 'notificationKey',
          description: (
             <div>
+               <MyMenu noThemeToggle />
                <Checkbox onChange={(e) => { changeChecked(e) }} checked={settings.clock}>Clock</Checkbox>
                {settings.clock && <Checkbox onChange={(e) => {setSecondsChecked(e.target.checked); settingsRef.current.showSeconds = e.target.checked; openNotification();
                }} checked={settings.showSeconds}>Show Seconds in Clock</Checkbox>}

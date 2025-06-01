@@ -5,7 +5,7 @@ import { Button } from 'antd'
 import { useContext } from 'react'
 import { ThemeContext } from '../context/ThemeContext.ts'
 
-function MyMenu() {
+function MyMenu({ noThemeToggle = false }: { noThemeToggle?: boolean }) {
    const themeContext  = useContext(ThemeContext)
 
    const items = [
@@ -21,9 +21,9 @@ function MyMenu() {
             { items.map(item =>
                <li><NavLink to={item.key}>{item.label}</NavLink></li>)
             }
-            <li>
-               <Button className={s['menu-icon']} icon={themeContext?.darkTheme ? <SunOutlined /> : <MoonOutlined />} onClick={() => { themeContext?.toggleTheme() }} type="link" />
-            </li>
+            {!noThemeToggle && <li>
+                <Button className={s['menu-icon']} icon={themeContext?.darkTheme ? <SunOutlined /> : <MoonOutlined />} onClick={() => { themeContext?.toggleTheme() }} type="link" />
+            </li>}
          </ul>
       </div>
    )

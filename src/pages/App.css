@@ -35,3 +35,9 @@ main {
     display: grid;
     place-items: center;
 }
+
+a.active {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid grey;
+}

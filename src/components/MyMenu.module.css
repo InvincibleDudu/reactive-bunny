@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     list-style: none;
+    padding-inline-start: 0;
 }
 
 .menu li:hover {
@@ -10,7 +11,7 @@
 }
 
 .menu li {
-    margin: 0 10px;
+    margin: 0 9px;
     transition: 0.2s all;
 }
 
