@@ -11,11 +11,3 @@ body {
     cursor: none;
 }
 
-.clock {
-    color: grey;
-    font-size: 40px;
-    height: 300px;
-    display: grid;
-    place-items: center;
-
-}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Checkbox, CheckboxChangeEvent, notification } from 'antd'
+import { Checkbox, CheckboxChangeEvent, ConfigProvider, notification, theme } from 'antd'
 import { getReadableTime, toggleFullscreen } from '../util.ts'
 
 export default function BlackScreen() {
@@ -83,7 +83,7 @@ export default function BlackScreen() {
    }, [])
 
    return (
-      <>
+      <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
          {contextHolder}
          <div className={'black-screen ' + (isVisible ? '' : 'cursor-none')} ref={backgroundRef}>
             {clockChecked && <div className="clock">{secondsChecked ? clockTime : clockTime.substring(0, clockTime.length - 3)}</div>}
@@ -93,6 +93,6 @@ export default function BlackScreen() {
                 </svg>
             }
          </div>
-      </>
+      </ConfigProvider>
    )
 }

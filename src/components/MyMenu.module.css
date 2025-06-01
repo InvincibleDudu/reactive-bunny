@@ -1,6 +1,7 @@
 .menu {
     display: flex;
     justify-content: center;
+    align-items: center;
     list-style: none;
 }
 
@@ -11,4 +12,13 @@
 .menu li {
     margin: 0 10px;
     transition: 0.2s all;
+}
+
+.menu li:last-child {
+    margin: 0;
+}
+
+.menu-icon {
+    font-size: 18px;
+    margin: 0;
 }
