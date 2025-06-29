@@ -1,0 +1,121 @@
+.avatar {
+  main {
+    accent-color: lightskyblue;
+    padding: 1rem;
+  }
+
+  .grid-center {
+    display: grid;
+    place-items: center;
+  }
+
+  main .svg {
+    display: none;
+    place-items: center;
+    margin-top: 2rem;
+    aspect-ratio: 1;
+  }
+
+  input[type="range"] {
+    vertical-align: middle;
+  }
+
+  input[type="number"] {
+    width: 80px;
+  }
+
+  input[type="file"] {
+    padding: 1rem 0 1rem 1rem;
+
+    &::-webkit-file-upload-button,
+    &::file-selector-button {
+      cursor: pointer;
+      background: white;
+      outline: none;
+      border: 1px dotted #6bbef8;
+      border-radius: 4px;
+      box-shadow: 1px 1px 6px #dadada;
+      padding: .5rem 1rem;
+      margin-right: 1rem;
+      transition: .2s all;
+    }
+
+    &::-webkit-file-upload-button:hover {
+      border: 1px solid cornflowerblue;
+      background: #fefefe;
+      color: cornflowerblue;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    background: white;
+    outline: none;
+    border: 1px dotted #6bbef8;
+    border-radius: 4px;
+    box-shadow: 1px 1px 6px #dadada;
+    padding: .5rem 1rem;
+    margin-top: 1rem;
+    transition: .2s all;
+  }
+
+  button:not(:first-of-type) {
+    margin-left: 1rem;
+  }
+
+  button:hover {
+    border: 1px solid cornflowerblue;
+    background: #fefefe;
+    color: cornflowerblue;
+  }
+
+  .color-label {
+    //transform: translate(1rem);
+    padding-right: 1rem;
+  }
+
+  input[type="color"] {
+    visibility: hidden;
+  }
+
+  label[for="color-picker"] {
+    cursor: pointer;
+    //border: 1px solid black;
+    outline: 6px solid lightgrey;
+    border-radius: 20%;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+  }
+
+  .label {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .click-span {
+    cursor: pointer;
+    transition: .2s all;
+    outline: 1px solid transparent;
+  }
+
+  .click-span:hover {
+    outline: 1px solid #6bbef8;
+  }
+
+  #canvas {
+    display: block;
+    margin-top: 2rem;
+    outline: 4px dotted #6bbef8;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 1rem;
+
+    p {
+      font-weight: bold;
+    }
+  }
+}

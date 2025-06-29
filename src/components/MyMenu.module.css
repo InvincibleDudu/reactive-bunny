@@ -1,9 +1,19 @@
+.wrapper {
+    transition: .2s all;
+}
+
 .menu {
     display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
     padding-inline-start: 0;
+}
+
+.middle {
+    padding-top: 40vh;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .menu li:hover {

@@ -16,7 +16,7 @@ function App() {
    }
 
    return (
-      <main>
+      <div className="app">
          <ThemeContext.Provider value={{ darkTheme, toggleTheme }}>
             <ConfigProvider theme={{ algorithm: darkTheme ? theme.darkAlgorithm : undefined }}>
                <MyMenu />
@@ -26,7 +26,7 @@ function App() {
                </Routes>
             </ConfigProvider>
          </ThemeContext.Provider>
-      </main>
+      </div>
    )
 }
 
