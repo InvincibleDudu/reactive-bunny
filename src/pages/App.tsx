@@ -4,16 +4,22 @@ import '@ant-design/v5-patch-for-react-19'
 import { Route, Routes } from 'react-router'
 import Calc from './Calc.tsx'
 import Avatar from './Avatar.tsx'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { ThemeContext } from '../context/ThemeContext.ts'
 import { ConfigProvider, theme } from 'antd'
+import useLocalStorage from '../hooks/useLocalStorage.tsx'
+import { useEffect } from 'react'
 
 function App() {
-   const [darkTheme, setDarkTheme] = useState(false)
+   const [darkTheme, setDarkTheme] = useLocalStorage('dark', false)
 
    const toggleTheme = () => {
       setDarkTheme(prev => !prev)
    }
+
+   useEffect(() => {
+      if (darkTheme) document.documentElement.classList.add('dark')
+   })
 
    return (
       <div className="app">

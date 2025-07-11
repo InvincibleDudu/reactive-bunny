@@ -16,6 +16,17 @@ function MyMenu({ noThemeToggle = false }: { noThemeToggle?: boolean }) {
       { label: 'Avatar', key: '/avatar' },
    ]
 
+   function toggleTheme () {
+      themeContext?.toggleTheme()
+      document.documentElement.classList.add('with-transition')
+
+      if (themeContext?.darkTheme) {
+         document.documentElement.classList.remove('dark')
+      } else {
+         document.documentElement.classList.add('dark')
+      }
+   }
+
    return (
       <div className={s.wrapper + (currentPath === '/' ? ' ' + s.middle : '')}>
          <ul className={s.menu}>
@@ -23,7 +34,7 @@ function MyMenu({ noThemeToggle = false }: { noThemeToggle?: boolean }) {
                <li><NavLink to={item.key}>{item.label}</NavLink></li>)
             }
             {!noThemeToggle && <li>
-                <Button className={s['menu-icon']} icon={themeContext?.darkTheme ? <SunOutlined /> : <MoonOutlined />} onClick={() => { themeContext?.toggleTheme() }} type="link" />
+                <Button className={s['menu-icon']} icon={themeContext?.darkTheme ? <SunOutlined /> : <MoonOutlined />} onClick={toggleTheme} type="link" />
             </li>}
          </ul>
       </div>
