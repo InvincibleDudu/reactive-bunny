@@ -29,7 +29,7 @@ function MyMenu({ noThemeToggle = false }: { noThemeToggle?: boolean }) {
 
    return (
       <div className={s.wrapper + (currentPath === '/' ? ' ' + s.middle : '')}>
-         <ul className={s.menu}>
+         <ul className={s.menu + ' mt-3'}>
             { items.map(item =>
                <li><NavLink to={item.key}>{item.label}</NavLink></li>)
             }
