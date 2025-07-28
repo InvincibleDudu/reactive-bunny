@@ -24,3 +24,8 @@ export function toggleFullscreen() {
       document.exitFullscreen().then()
    }
 }
+
+export function toFixedNumber(num: number, digits = 2, base?: number) {
+   const pow = Math.pow(base || 10, digits)
+   return Math.round(num * pow) / pow
+}
