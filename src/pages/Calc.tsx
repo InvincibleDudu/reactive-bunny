@@ -5,8 +5,8 @@ import { toFixedNumber } from '../util.ts'
 type DisplayData = { horizontal: number, vertical: number, size: number }
 
 export default function Calc () {
-   // const [rof, setRof] = useState(600)
-   // const [btk, setBtk] = useState(3)
+   const [rof, setRof] = useState(600)
+   const [btk, setBtk] = useState(3)
    const [vertical, setVertical] = useState(toFixedNumber(window.screen.height * window.devicePixelRatio, 2))
    const [horizontal, setHorizontal] = useState(toFixedNumber(window.screen.width * window.devicePixelRatio, 2))
    const [size, setSize] = useState(6)
@@ -78,12 +78,16 @@ export default function Calc () {
 
    return (
       <main className="px-4">
-         {/*<div>*/}
-         {/*   <InputNumber min={1} value={rof} defaultValue={600} addonBefore={'RoF'} onChange={v => v && setRof(v)} className="" />*/}
-         {/*   <InputNumber min={1} value={btk} addonBefore={'BtK'} onChange={v => v && setBtk(v)} className="w-4" />*/}
-         {/*   <p>{ ((60 / rof) * (btk - 1) * 1000).toFixed(0) }ms</p>*/}
-         {/*</div>*/}
-         <div className="res flex justify-center mt-4">
+         <section className="mt-4">
+            <h1 className="text-center font-bold mb-2 text-xl">TTK</h1>
+            <div className="flex justify-center item-center">
+               <InputNumber min={1} value={rof} defaultValue={600} addonBefore={'RoF'} onChange={v => v && setRof(v)} className="w-50" />
+               <InputNumber min={1} value={btk} addonBefore={'BtK'} onChange={v => v && setBtk(v)} className="w-50" />
+            </div>
+            <p className="text-center mt-2">{ ((60 / rof) * (btk - 1) * 1000).toFixed(0) }ms</p>
+         </section>
+
+         <div className="res flex justify-center mt-16">
             {/*{ horizontal } { vertical }*/}
             <InputNumber addonBefore="Horizontal" addonAfter="px" min={1} value={horizontal} onChange={(v) => { if(v) setHorizontal(v) }} className="w-50" />
             <InputNumber addonBefore="Vertical" addonAfter="px" min={1} value={vertical} onChange={v => {if(v) setVertical(v)}} className="w-51" />
