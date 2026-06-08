@@ -3,6 +3,7 @@
 }
 
 .black-screen {
+    position: relative;
     width: 100vw;
     height: 100vh;
     background: #000;
@@ -27,9 +28,11 @@
 .clock {
     color: grey;
     font-size: 40px;
-    height: 300px;
-    display: grid;
-    place-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    user-select: none;
 }
 
 a.active {

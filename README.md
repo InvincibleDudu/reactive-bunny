@@ -1,13 +1,13 @@
 # TODOs
 
-- Global Dark Mode 
+- ~~Global Dark Mode~~ 
 
 ### Blackscreen
-- Moving clock
+- ~~Moving clock~~
 - Draggable shape for bloom test 
 
 ### Avatar
 - Migrate UI elements to `antd`
 
 ### Calc
-- Migrate the whole thing
+- ~~Migrate the whole thing~~
