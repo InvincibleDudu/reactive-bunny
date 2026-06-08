@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Checkbox, CheckboxChangeEvent, ConfigProvider, notification, theme } from 'antd'
+import { Checkbox, CheckboxChangeEvent, ConfigProvider, notification, Slider, theme } from 'antd'
 import { getReadableTime, toggleFullscreen } from '../util.ts'
 import MyMenu from '../components/MyMenu.tsx'
 
 const CLOCK_MOVE_INTERVAL_MS = 3 * 60 * 1000
 const CLOCK_VIEWPORT_PADDING_PX = 16
+const DEFAULT_CLOCK_OPACITY = 0.5
+type BooleanSettingKey = 'clock' | 'showSeconds' | 'moveClock'
 
 function randomClockTopPx(containerHeight: number, clockHeight: number) {
    const minTop = CLOCK_VIEWPORT_PADDING_PX
@@ -29,6 +31,7 @@ export default function BlackScreen() {
       clock: false,
       showSeconds: false,
       moveClock: false,
+      clockOpacity: DEFAULT_CLOCK_OPACITY,
    })
    const backgroundRef = useRef<HTMLDivElement>(null)
    const clockRef = useRef<HTMLDivElement>(null)
@@ -36,11 +39,12 @@ export default function BlackScreen() {
    const [moveClockChecked, setMoveClockChecked] = useState(false)
    const [clockTime, setClockTime] = useState(getReadableTime())
    const [clockTopPx, setClockTopPx] = useState(CLOCK_VIEWPORT_PADDING_PX)
+   const [clockOpacity, setClockOpacity] = useState(DEFAULT_CLOCK_OPACITY)
    const [api, contextHolder] = notification.useNotification()
    const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
    const openNotificationRef = useRef<(settings?: typeof settingsRef.current) => void>(() => {})
 
-   function changeChecked(e: CheckboxChangeEvent, item = 'clock' as keyof typeof settingsRef.current) {
+   function changeChecked(e: CheckboxChangeEvent, item: BooleanSettingKey = 'clock') {
       console.log(e)
       setClockChecked(e.target.checked)
       settingsRef.current[item] = e.target.checked
@@ -54,18 +58,45 @@ export default function BlackScreen() {
          message: `Settings`,
          key: 'notificationKey',
          description: (
-            <div>
+            <div className="black-screen-settings">
                <MyMenu noThemeToggle />
                <Checkbox onChange={(e) => { changeChecked(e) }} checked={settings.clock}>Clock</Checkbox>
-               {settings.clock && <Checkbox onChange={(e) => {setSecondsChecked(e.target.checked); settingsRef.current.showSeconds = e.target.checked; openNotification();
-               }} checked={settings.showSeconds}>Show Seconds in Clock</Checkbox>}
-               {settings.clock && <Checkbox onChange={(e) => {setMoveClockChecked(e.target.checked); settingsRef.current.moveClock = e.target.checked; openNotification();
-               }} checked={settings.moveClock}>Moving Clock</Checkbox>}
+               <Checkbox
+                  disabled={!settings.clock}
+                  onChange={(e) => {setSecondsChecked(e.target.checked); settingsRef.current.showSeconds = e.target.checked; openNotification();
+                  }}
+                  checked={settings.showSeconds}
+               >
+                  Show Seconds in Clock
+               </Checkbox>
+               <Checkbox
+                  disabled={!settings.clock}
+                  onChange={(e) => {setMoveClockChecked(e.target.checked); settingsRef.current.moveClock = e.target.checked; openNotification();
+                  }}
+                  checked={settings.moveClock}
+               >
+                  Moving Clock
+               </Checkbox>
+               <div className="clock-opacity-setting">
+                  <span>Clock Brightness</span>
+                  <Slider
+                     disabled={!settings.clock}
+                     defaultValue={settings.clockOpacity * 100}
+                     min={0}
+                     max={100}
+                     tooltip={{ formatter: (value) => `${value}%` }}
+                     onChange={(value) => {
+                        const nextOpacity = value / 100
+                        setClockOpacity(nextOpacity)
+                        settingsRef.current.clockOpacity = nextOpacity
+                     }}
+                  />
+               </div>
             </div>
          ),
          onClose: () => { notisRef.current = false },
          duration: 1.5,
-         placement: 'top',
+         placement: 'bottom',
       })
    }
    openNotificationRef.current = openNotification
@@ -79,7 +110,7 @@ export default function BlackScreen() {
          setIsVisible(false)
       }, 1000)
 
-      if (e.clientY < 30 && !notisRef.current) {
+      if (window.innerHeight - e.clientY < 30 && !notisRef.current) {
          openNotificationRef.current()
          notisRef.current = true
       }
@@ -138,7 +169,7 @@ export default function BlackScreen() {
                <div
                   ref={clockRef}
                   className="clock"
-                  style={{ top: `${clockTopPx}px` }}
+                  style={{ color: `rgba(255, 255, 255, ${clockOpacity})`, top: `${clockTopPx}px` }}
                >
                   {secondsChecked ? clockTime : clockTime.substring(0, clockTime.length - 3)}
                </div>

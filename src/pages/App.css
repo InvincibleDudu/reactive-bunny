@@ -26,13 +26,32 @@
 }
 
 .clock {
-    color: grey;
+    color: rgb(255 255 255 / .5);
     font-size: 40px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     pointer-events: none;
     user-select: none;
+}
+
+.black-screen-settings {
+    min-width: 220px;
+}
+
+.black-screen-settings label {
+    display: flex;
+    margin-top: 8px;
+}
+
+.clock-opacity-setting {
+    margin-top: 12px;
+}
+
+.clock-opacity-setting span {
+    display: block;
+    margin-bottom: 4px;
+    color: rgb(255 255 255 / .85);
 }
 
 a.active {
